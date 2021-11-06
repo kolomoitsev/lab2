@@ -1,0 +1,7 @@
+{
+  "trailingComma": "es2016",
+  "tabWidth": 4,
+  "width": 120,
+  "semi": true,
+  "singleQuote": true
+}
