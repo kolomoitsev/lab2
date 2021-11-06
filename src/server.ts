@@ -6,6 +6,9 @@ const path = require('path');
 
 import { config } from './config';
 
+import userApi = require('./api/user.api');
+import noteApi = require('./api/note.api')
+
 const MONGODB_LINK = config.MONGOOSE_LINK;
 
 mongoose.connect(MONGODB_LINK, {
@@ -27,6 +30,9 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/api/user', userApi);
+app.use('/api/note', noteApi);
 
 const PORT = process.env.PORT || 3001;
 

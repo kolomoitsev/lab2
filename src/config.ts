@@ -1,6 +1,6 @@
 export const config = {
     MONGOOSE_LINK:
-        'mongodb+srv://kolomoitsev:HVZD4EdjqXNV6ihQ@cluster0.hnn0k.mongodb.net',
+        'mongodb+srv://kolomoitsev:HVZD4EdjqXNV6ihQ@cluster0.hnn0k.mongodb.net/uni',
     jwt: {
         secret: 'sigmatestkey',
         tokens: {
