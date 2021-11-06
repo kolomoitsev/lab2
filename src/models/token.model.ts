@@ -1,9 +1,5 @@
 import { model, Schema } from 'mongoose';
-
-interface IToken {
-    tokenId: string;
-    userId: string;
-}
+import { IToken } from '../types/user.types';
 
 const TokenModel = new Schema<IToken>({
     tokenId: String,
