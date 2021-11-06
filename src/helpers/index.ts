@@ -1,5 +1,7 @@
 import jwt from 'jsonwebtoken';
 import { config } from '../config';
+import { UserControllerAction } from '../types/user.types';
+import { UserController } from '../controllers/user.controller';
 
 const { v4: uuidV4 } = require('uuid');
 
@@ -43,6 +45,13 @@ const replaceToken = async (tokenId, userId) => {
             });
         });
 };
+
+export const verifyUserInstance = (action: UserControllerAction) => {
+    return (req: Request, res: Response) => {
+        const consumerInstance = new UserController();
+        action(req, res, consumerInstance)
+    }
+}
 
 const authenticateToken = async (req, res, next) => {
     const authHeader = req.headers['authorization'];

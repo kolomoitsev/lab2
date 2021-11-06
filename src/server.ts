@@ -5,9 +5,8 @@ const cors = require('cors');
 const path = require('path');
 
 import { config } from './config';
-
 import userApi = require('./api/user.api');
-import noteApi = require('./api/note.api')
+import noteApi = require('./api/note.api');
 
 const MONGODB_LINK = config.MONGOOSE_LINK;
 

@@ -1,79 +1,91 @@
-const express = require('express');
 import jwt from 'jsonwebtoken';
 import { config } from '../config';
+import { Request, Response } from 'express';
+import { UserController } from '../controllers/user.controller';
+import { TokenController } from '../controllers/token.controller';
+
+const express = require('express');
+const bCrypt = require('bcrypt');
 
 const { jwt: { secret } } = config;
-
 const router = express.Router();
-
-const bCrypt = require('bcrypt');
 
 const { authenticateToken, updateTokens } = require('./../helpers/index');
 
-const tokenModel = require('./../models/token.model');
-const userModel = require('./../models/user.model');
-
 router
     //user auth
-    .post('/login', async (req, res) => {
+    .post('/login', async (req: Request, res: Response) => {
+
         const { userEmail, userPassword } = req.body;
 
-        let user;
-
         try {
-            user = await userModel.findOne({
-                userEmail
+            const userController = new UserController();
+
+            const user = await userController.findUser(userEmail);
+
+            if (!user) {
+                return res.status(404);
+            }
+
+            if (!(await bCrypt.compare(userPassword, user.userPassword))) {
+                return res.sendStatus(401);
+            }
+
+            const tokens = await updateTokens(user?._id);
+
+            return res.status(200).json({
+                tokens, userEmail, _id: user?._id
             });
+
         } catch (e) {
-            return res.status(404).json(e.message);
-        }
-        if (!user) {
-            return res.sendStatus(404);
-        }
-
-        if ((await bCrypt.compare(userPassword, user.userPassword)) === false) {
-            return res.sendStatus(401);
-        } else {
-            const { userEmail, _id } = user;
-
-            updateTokens(_id).then((tokens) =>
-                res.json({ tokens, userEmail, _id })
-            );
+            return res.status(400).json(e.message, e);
         }
     })
     //refresh tokens
-    .post('/refresh', async (req, res) => {
+    .post('/refresh', async (req: Request, res: Response) => {
         const { refreshToken } = req.body;
 
         let payload;
 
         try {
             payload = jwt.verify(refreshToken, secret);
-            if (payload.type !== 'refresh') {
+
+            if (payload.type === 'refresh') {
                 return res.status(400).json({ message: 'Invalid token' });
             }
+
         } catch (e) {
+
             if (e instanceof jwt.TokenExpiredError) {
                 return res.status(400).json({ message: 'Token expired' });
-            } else if (e instanceof jwt.JsonWebTokenError) {
+            }
+
+            if (e instanceof jwt.JsonWebTokenError) {
                 return res.status(400).json({ message: 'Invalid token' });
             }
+
         }
 
-        tokenModel
-            .findOne({ tokenId: payload.id })
-            .exec()
-            .then((token) => {
-                if (token === null) {
-                    throw new Error('Invalid token');
-                }
-                return updateTokens(token.userId);
-            })
-            .then((tokens) => res.json(tokens))
-            .catch((err) => res.status(400).json({ message: err.message }));
+        try {
+
+            const tokenController = new TokenController();
+
+            const token = await tokenController.findToken(payload.id);
+
+            if (!token) {
+                return;
+            }
+
+            const tokens = await updateTokens(token.userId);
+
+            return res.status(200).json({ tokens });
+
+        } catch (e) {
+            return res.status(400).json({ message: e.message, e });
+        }
     })
     //register user
-    .post('/register', async (req, res) => {
+    .post('/register', async (req: Request, res: Response) => {
         const {
             userName,
             userLastName,
@@ -82,76 +94,84 @@ router
             userPassword
         } = req.body;
 
-        let user = new userModel({
-            userName,
-            userLastName,
-            userEmail,
-            userPhone,
-            userPassword: await bCrypt.hash(userPassword, 10)
-        });
+        try {
+            const controller = new UserController();
 
-        await user
-            .save()
-            .then(() => {
-                user = user.toObject();
-                delete user.userPassword;
-                res.status(200).json(user);
-            })
-            .catch((err) =>
-                res.status(500).json({
-                    error: 'Error with creating new user',
-                    err
-                })
-            );
+            const user = await controller.register({
+                userName,
+                userLastName,
+                userEmail,
+                userPhone,
+                userPassword
+            });
+
+            if (!user) {
+                return res.status(400).json({
+                    message: 'Check prompted data'
+                });
+            }
+
+        } catch (e) {
+            return res.status(400).json({
+                message: 'Check prompted data',
+                e
+            });
+        }
     })
     //get all users
-    .get('/getAll', authenticateToken, async (req, res) => {
+    .get('/getAll', authenticateToken, async (req: Request, res: Response) => {
         try {
-            const users = await userModel.find({})
-                .select('-userPassword');
 
-            if (users.length) {
-                return res.status(200).json(users);
-            } else {
+            const controller = new UserController();
+
+            const users = await controller.getAll();
+
+            if (!users?.length) {
                 return res.status(404).json({
                     error: 'Not found'
                 });
             }
+
+            return res.status(200).json(users);
+
         } catch (e) {
-            return res.status(500).json({
-                error: 'Error with finding users',
+            return res.status(400).json({
                 e
             });
         }
     })
     //edit user
-    .put('/changePassword', authenticateToken, async (req, res) => {
+    .put('/changePassword', authenticateToken, async (req: Request, res: Response) => {
+
         const {
             userEmail,
-            userCurrentPassword,
             userNewPassword
         } = req.body;
 
         try {
-            const user = await userModel.findOneAndUpdate({
-                userEmail: userEmail
-            }, {
-                userPassword: await bCrypt.hash(userNewPassword, 10)
-            })
-                .select('-userPassword');
 
-            if (user) {
-                return res.status(200).json(user);
-            } else
-                return res.status(404).json({
-                    error: 'Not found'
+            const controller = new UserController();
+
+            const user = await controller.changePassword({
+                userEmail,
+                userPassword: userNewPassword
+            });
+
+            if (!user) {
+                return res.status(400).json({
+                    error: 'Not found',
                 });
+            }
+
+            return res.status(200).json(user);
+
         } catch (e) {
-            console.log(e);
-            return res.status(500).json({
-                error: 'Error with updating exact user'
+            return res.status(400).json({
+                error: 'Error with updating exact user',
+                e
             });
         }
+
     });
 
 
