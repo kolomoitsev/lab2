@@ -111,6 +111,7 @@ router
                 });
             }
 
+            return res.status(200).json(user);
         } catch (e) {
             return res.status(400).json({
                 message: 'Check prompted data',
@@ -159,7 +160,7 @@ router
 
             if (!user) {
                 return res.status(400).json({
-                    error: 'Not found',
+                    error: 'Not found'
                 });
             }
 
