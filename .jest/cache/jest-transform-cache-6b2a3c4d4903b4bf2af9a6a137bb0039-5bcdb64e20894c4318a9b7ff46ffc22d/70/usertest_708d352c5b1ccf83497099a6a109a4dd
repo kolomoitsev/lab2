@@ -1,0 +1,72 @@
+d1929e4163f539666bd79a496510ba17
+"use strict";
+
+var __awaiter = this && this.__awaiter || function (thisArg, _arguments, P, generator) {
+  function adopt(value) {
+    return value instanceof P ? value : new P(function (resolve) {
+      resolve(value);
+    });
+  }
+
+  return new (P || (P = Promise))(function (resolve, reject) {
+    function fulfilled(value) {
+      try {
+        step(generator.next(value));
+      } catch (e) {
+        reject(e);
+      }
+    }
+
+    function rejected(value) {
+      try {
+        step(generator["throw"](value));
+      } catch (e) {
+        reject(e);
+      }
+    }
+
+    function step(result) {
+      result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+    }
+
+    step((generator = generator.apply(thisArg, _arguments || [])).next());
+  });
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+const jest_mock_extended_1 = require("jest-mock-extended");
+
+const user_controller_1 = require("../controllers/user.controller");
+
+const config_1 = require("../config");
+
+const mongoose = require('mongoose');
+
+describe('Testing user controller', () => {
+  beforeEach(() => {
+    jest.setTimeout(10000);
+  });
+  test('testing finding user', done => __awaiter(void 0, void 0, void 0, function* () {
+    const MONGODB_LINK = config_1.config.MONGOOSE_LINK;
+    mongoose.connect(MONGODB_LINK, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true
+    }).catch(err => console.log(err));
+    mongoose.connection.once('open', () => {
+      console.log(`MongoDb connection established successfully`);
+    }).on('error', () => {
+      console.log('connection error');
+    });
+    const userController = new user_controller_1.UserController();
+    const user = (0, jest_mock_extended_1.mock)();
+    const pavlo = yield userController.findUser('6186fe32c5880ccea55d0473');
+    console.log(pavlo);
+    expect(pavlo).toBeInstanceOf(user);
+    done();
+  }));
+});
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy90ZXN0cy91c2VyLnRlc3QudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFDQSxNQUFBLG9CQUFBLEdBQUEsT0FBQSxDQUFBLG9CQUFBLENBQUE7O0FBQ0EsTUFBQSxpQkFBQSxHQUFBLE9BQUEsQ0FBQSxnQ0FBQSxDQUFBOztBQUNBLE1BQUEsUUFBQSxHQUFBLE9BQUEsQ0FBQSxXQUFBLENBQUE7O0FBQ0EsTUFBTSxRQUFRLEdBQUcsT0FBTyxDQUFDLFVBQUQsQ0FBeEI7O0FBRUEsUUFBUSxDQUFDLHlCQUFELEVBQTRCLE1BQUs7QUFDckMsRUFBQSxVQUFVLENBQUMsTUFBSztBQUNaLElBQUEsSUFBSSxDQUFDLFVBQUwsQ0FBZ0IsS0FBaEI7QUFDSCxHQUZTLENBQVY7QUFHQSxFQUFBLElBQUksQ0FBQyxzQkFBRCxFQUFnQyxJQUFQLElBQWUsU0FBQSxDQUFBLEtBQUEsQ0FBQSxFQUFBLEtBQUEsQ0FBQSxFQUFBLEtBQUEsQ0FBQSxFQUFBLGFBQUE7QUFDeEMsVUFBTSxZQUFZLEdBQUcsUUFBQSxDQUFBLE1BQUEsQ0FBTyxhQUE1QjtBQUVBLElBQUEsUUFBUSxDQUFDLE9BQVQsQ0FBaUIsWUFBakIsRUFBK0I7QUFDM0IsTUFBQSxlQUFlLEVBQUUsSUFEVTtBQUUzQixNQUFBLGtCQUFrQixFQUFFLElBRk87QUFHM0IsTUFBQSxjQUFjLEVBQUU7QUFIVyxLQUEvQixFQUtLLEtBTEwsQ0FLWSxHQUFELElBQWMsT0FBTyxDQUFDLEdBQVIsQ0FBWSxHQUFaLENBTHpCO0FBT0EsSUFBQSxRQUFRLENBQUMsVUFBVCxDQUFvQixJQUFwQixDQUF5QixNQUF6QixFQUFpQyxNQUFLO0FBQ2xDLE1BQUEsT0FBTyxDQUFDLEdBQVIsQ0FBWSw2Q0FBWjtBQUNILEtBRkQsRUFHSyxFQUhMLENBR1EsT0FIUixFQUdpQixNQUFLO0FBQ2QsTUFBQSxPQUFPLENBQUMsR0FBUixDQUFZLGtCQUFaO0FBQ0gsS0FMTDtBQU1BLFVBQU0sY0FBYyxHQUFHLElBQUksaUJBQUEsQ0FBQSxjQUFKLEVBQXZCO0FBQ0EsVUFBTSxJQUFJLEdBQUcsQ0FBQSxHQUFBLG9CQUFBLENBQUEsSUFBQSxHQUFiO0FBQ0EsVUFBTSxLQUFLLEdBQUcsTUFBTSxjQUFjLENBQUMsUUFBZixDQUF3QiwwQkFBeEIsQ0FBcEI7QUFDQSxJQUFBLE9BQU8sQ0FBQyxHQUFSLENBQVksS0FBWjtBQUNBLElBQUEsTUFBTSxDQUFDLEtBQUQsQ0FBTixDQUFjLGNBQWQsQ0FBNkIsSUFBN0I7QUFDQSxJQUFBLElBQUk7QUFDUCxHQXRCMkMsQ0FBeEMsQ0FBSjtBQXVCSCxDQTNCTyxDQUFSIiwic291cmNlUm9vdCI6IiJ9

@@ -1,0 +1,15 @@
+5ae47f85709ccf8c6402985eaedb9f87
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.validateUserEmail = void 0;
+
+const validateUserEmail = opts => {
+  const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/gi;
+  return emailRegex.test(opts.userEmail);
+};
+
+exports.validateUserEmail = validateUserEmail;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9oZWxwZXJzL3ZhbGlkYXRpb24udHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7OztBQUVPLE1BQU0saUJBQWlCLEdBQUksSUFBRCxJQUF5QjtBQUN0RCxRQUFNLFVBQVUsR0FBRyx5SkFBbkI7QUFDQSxTQUFPLFVBQVUsQ0FBQyxJQUFYLENBQWdCLElBQUksQ0FBQyxTQUFyQixDQUFQO0FBQ0gsQ0FITTs7QUFBTSxPQUFBLENBQUEsaUJBQUEsR0FBaUIsaUJBQWpCIiwic291cmNlUm9vdCI6IiJ9

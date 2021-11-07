@@ -1,0 +1,21 @@
+77088a068921e422a0a79185e298e6e4
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.config = void 0;
+exports.config = {
+    MONGOOSE_LINK: 'mongodb+srv://kolomoitsev:HVZD4EdjqXNV6ihQ@cluster0.hnn0k.mongodb.net/uni',
+    jwt: {
+        secret: 'sigmatestkey',
+        tokens: {
+            access: {
+                type: 'access',
+                expiresIn: '2m'
+            },
+            refresh: {
+                type: 'refresh',
+                expiresIn: '5m'
+            }
+        }
+    }
+};
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJmaWxlIjoiL1VzZXJzL2FwcGxlL0Rlc2t0b3AvcGVyc29uYWwvdW5pL3Rlc3RpbmcvbGFiMi9zcmMvY29uZmlnLnRzIiwibWFwcGluZ3MiOiI7OztBQUFhLFFBQUEsTUFBTSxHQUFHO0lBQ2xCLGFBQWEsRUFDVCwyRUFBMkU7SUFDL0UsR0FBRyxFQUFFO1FBQ0QsTUFBTSxFQUFFLGNBQWM7UUFDdEIsTUFBTSxFQUFFO1lBQ0osTUFBTSxFQUFFO2dCQUNKLElBQUksRUFBRSxRQUFRO2dCQUNkLFNBQVMsRUFBRSxJQUFJO2FBQ2xCO1lBQ0QsT0FBTyxFQUFFO2dCQUNMLElBQUksRUFBRSxTQUFTO2dCQUNmLFNBQVMsRUFBRSxJQUFJO2FBQ2xCO1NBQ0o7S0FDSjtDQUNKLENBQUMiLCJuYW1lcyI6W10sInNvdXJjZXMiOlsiL1VzZXJzL2FwcGxlL0Rlc2t0b3AvcGVyc29uYWwvdW5pL3Rlc3RpbmcvbGFiMi9zcmMvY29uZmlnLnRzIl0sInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBjb25zdCBjb25maWcgPSB7XG4gICAgTU9OR09PU0VfTElOSzpcbiAgICAgICAgJ21vbmdvZGIrc3J2Oi8va29sb21vaXRzZXY6SFZaRDRFZGpxWE5WNmloUUBjbHVzdGVyMC5obm4way5tb25nb2RiLm5ldC91bmknLFxuICAgIGp3dDoge1xuICAgICAgICBzZWNyZXQ6ICdzaWdtYXRlc3RrZXknLFxuICAgICAgICB0b2tlbnM6IHtcbiAgICAgICAgICAgIGFjY2Vzczoge1xuICAgICAgICAgICAgICAgIHR5cGU6ICdhY2Nlc3MnLFxuICAgICAgICAgICAgICAgIGV4cGlyZXNJbjogJzJtJ1xuICAgICAgICAgICAgfSxcbiAgICAgICAgICAgIHJlZnJlc2g6IHtcbiAgICAgICAgICAgICAgICB0eXBlOiAncmVmcmVzaCcsXG4gICAgICAgICAgICAgICAgZXhwaXJlc0luOiAnNW0nXG4gICAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICB9XG59O1xuIl0sInZlcnNpb24iOjN9

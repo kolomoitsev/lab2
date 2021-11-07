@@ -1,0 +1,26 @@
+abff7444fa14059c7cf2381921daad75
+"use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const jest_mock_extended_1 = require("jest-mock-extended");
+const user_controller_1 = require("../controllers/user.controller");
+describe('Testing user controller', () => {
+    beforeEach(() => {
+        jest.setTimeout(10000);
+    });
+    test('testing finding user', () => __awaiter(void 0, void 0, void 0, function* () {
+        const userController = new user_controller_1.UserController();
+        const user = (0, jest_mock_extended_1.mock)();
+        const pavlo = yield userController.findUser('6186fe32c5880ccea55d0473');
+        expect(pavlo).toBeInstanceOf(user);
+    }));
+});
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJmaWxlIjoiL1VzZXJzL2FwcGxlL0Rlc2t0b3AvcGVyc29uYWwvdW5pL3Rlc3RpbmcvbGFiMi9zcmMvdGVzdHMvdXNlci50ZXN0LnRzIiwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7O0FBQ0EsMkRBQTBDO0FBQzFDLG9FQUFnRTtBQUVoRSxRQUFRLENBQUMseUJBQXlCLEVBQUUsR0FBRyxFQUFFO0lBQ3JDLFVBQVUsQ0FBQyxHQUFHLEVBQUU7UUFDWixJQUFJLENBQUMsVUFBVSxDQUFDLEtBQUssQ0FBQyxDQUFDO0lBQzNCLENBQUMsQ0FBQyxDQUFDO0lBQ0gsSUFBSSxDQUFDLHNCQUFzQixFQUFFLEdBQVMsRUFBRTtRQUNwQyxNQUFNLGNBQWMsR0FBRyxJQUFJLGdDQUFjLEVBQUUsQ0FBQztRQUM1QyxNQUFNLElBQUksR0FBRyxJQUFBLHlCQUFJLEdBQVMsQ0FBQztRQUMzQixNQUFNLEtBQUssR0FBRyxNQUFNLGNBQWMsQ0FBQyxRQUFRLENBQUMsMEJBQTBCLENBQUMsQ0FBQztRQUN4RSxNQUFNLENBQUMsS0FBSyxDQUFDLENBQUMsY0FBYyxDQUFDLElBQUksQ0FBQyxDQUFDO0lBQ3ZDLENBQUMsQ0FBQSxDQUFDLENBQUM7QUFDUCxDQUFDLENBQUMsQ0FBQyIsIm5hbWVzIjpbXSwic291cmNlcyI6WyIvVXNlcnMvYXBwbGUvRGVza3RvcC9wZXJzb25hbC91bmkvdGVzdGluZy9sYWIyL3NyYy90ZXN0cy91c2VyLnRlc3QudHMiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgSVVzZXIgfSBmcm9tICcuLi90eXBlcy91c2VyLnR5cGVzJztcbmltcG9ydCB7IG1vY2sgfSBmcm9tICdqZXN0LW1vY2stZXh0ZW5kZWQnO1xuaW1wb3J0IHsgVXNlckNvbnRyb2xsZXIgfSBmcm9tICcuLi9jb250cm9sbGVycy91c2VyLmNvbnRyb2xsZXInO1xuXG5kZXNjcmliZSgnVGVzdGluZyB1c2VyIGNvbnRyb2xsZXInLCAoKSA9PiB7XG4gICAgYmVmb3JlRWFjaCgoKSA9PiB7XG4gICAgICAgIGplc3Quc2V0VGltZW91dCgxMDAwMCk7XG4gICAgfSk7XG4gICAgdGVzdCgndGVzdGluZyBmaW5kaW5nIHVzZXInLCBhc3luYyAoKSA9PiB7XG4gICAgICAgIGNvbnN0IHVzZXJDb250cm9sbGVyID0gbmV3IFVzZXJDb250cm9sbGVyKCk7XG4gICAgICAgIGNvbnN0IHVzZXIgPSBtb2NrPElVc2VyPigpO1xuICAgICAgICBjb25zdCBwYXZsbyA9IGF3YWl0IHVzZXJDb250cm9sbGVyLmZpbmRVc2VyKCc2MTg2ZmUzMmM1ODgwY2NlYTU1ZDA0NzMnKTtcbiAgICAgICAgZXhwZWN0KHBhdmxvKS50b0JlSW5zdGFuY2VPZih1c2VyKTtcbiAgICB9KTtcbn0pO1xuIl0sInZlcnNpb24iOjN9

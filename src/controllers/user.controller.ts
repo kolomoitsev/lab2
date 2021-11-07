@@ -6,7 +6,6 @@ const bCrypt = require('bcrypt');
 
 interface IUserController {
     findUser: (userEmail: string) => Promise<IUser>;
-    login: () => void;
     refreshToken: () => void;
     register: (opts: IUser) => Promise<IUser>;
     getAll: () => Promise<Array<IUser>>;
@@ -33,10 +32,6 @@ export class UserController implements IUserController {
     public async getAll(): Promise<Array<IUser>> {
         return userModel.find({})
             .select('-userPassword');
-    }
-
-    public async login(): Promise<void> {
-
     }
 
     public async refreshToken(): Promise<void> {

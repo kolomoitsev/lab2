@@ -1,0 +1,15 @@
+a085fcfe6c232de6f0ace4cea7492ec0
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const validation_1 = require("../helpers/validation");
+describe('Testing user actions', () => {
+    test('testing prompted email', () => {
+        expect((0, validation_1.validateUserEmail)({
+            userEmail: 'pavlo.kolomoitsev@nure.ua',
+            userName: 'Pavlo',
+            userLastName: 'Kolomoitsev',
+            userPhone: '+380668750104'
+        })).toBe(true);
+    });
+});
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJmaWxlIjoiL1VzZXJzL2FwcGxlL0Rlc2t0b3AvcGVyc29uYWwvdW5pL3Rlc3RpbmcvbGFiMi9zcmMvdGVzdHMvdXNlci50ZXN0LnRzIiwibWFwcGluZ3MiOiI7O0FBQUEsc0RBQTBEO0FBRzFELFFBQVEsQ0FBQyxzQkFBc0IsRUFBRSxHQUFHLEVBQUU7SUFDbEMsSUFBSSxDQUFDLHdCQUF3QixFQUFFLEdBQUcsRUFBRTtRQUNoQyxNQUFNLENBQUMsSUFBQSw4QkFBaUIsRUFBQztZQUNyQixTQUFTLEVBQUUsMkJBQTJCO1lBQ3RDLFFBQVEsRUFBRSxPQUFPO1lBQ2pCLFlBQVksRUFBRSxhQUFhO1lBQzNCLFNBQVMsRUFBRSxlQUFlO1NBQ3JDLENBQUMsQ0FBQyxDQUFDLElBQUksQ0FBQyxJQUFJLENBQUMsQ0FBQztJQUNYLENBQUMsQ0FBQyxDQUFDO0FBQ1AsQ0FBQyxDQUFDLENBQUMiLCJuYW1lcyI6W10sInNvdXJjZXMiOlsiL1VzZXJzL2FwcGxlL0Rlc2t0b3AvcGVyc29uYWwvdW5pL3Rlc3RpbmcvbGFiMi9zcmMvdGVzdHMvdXNlci50ZXN0LnRzIl0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IHZhbGlkYXRlVXNlckVtYWlsIH0gZnJvbSAnLi4vaGVscGVycy92YWxpZGF0aW9uJztcbmltcG9ydCB7IElVc2VyIH0gZnJvbSAnLi4vdHlwZXMvdXNlci50eXBlcyc7XG5cbmRlc2NyaWJlKCdUZXN0aW5nIHVzZXIgYWN0aW9ucycsICgpID0+IHtcbiAgICB0ZXN0KCd0ZXN0aW5nIHByb21wdGVkIGVtYWlsJywgKCkgPT4ge1xuICAgICAgICBleHBlY3QodmFsaWRhdGVVc2VyRW1haWwoe1xuICAgICAgICAgICAgdXNlckVtYWlsOiAncGF2bG8ua29sb21vaXRzZXZAbnVyZS51YScsXG4gICAgICAgICAgICB1c2VyTmFtZTogJ1BhdmxvJyxcbiAgICAgICAgICAgIHVzZXJMYXN0TmFtZTogJ0tvbG9tb2l0c2V2JyxcbiAgICAgICAgICAgIHVzZXJQaG9uZTogJyszODA2Njg3NTAxMDQnXG59KSkudG9CZSh0cnVlKTtcbiAgICB9KTtcbn0pO1xuIl0sInZlcnNpb24iOjN9

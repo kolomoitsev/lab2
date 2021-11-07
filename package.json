@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "npm run build-ts",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "build-ts": "tsc",
     "clear": "rm -rf ./dist",
     "start": "node dist/server.js"
@@ -14,18 +14,40 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/jest": "^27.0.2",
     "axios": "^0.24.0",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "jest": "^27.3.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.12",
     "path": "^0.12.7",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "@types/mongoose": "^5.11.97"
+    "@types/mongoose": "^5.11.97",
+    "jest-mock-extended": "^2.0.4"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "transform": {
+      "^.+\\.(js)$": "<rootDir>/node_modules/babel-jest",
+      ".(ts|tsx)": "ts-jest"
+    },
+    "globals": {
+      "ts-jest": {
+        "astTransformers": [
+          "ts-nameof"
+        ]
+      }
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(js)$",
+    "moduleFileExtensions": [
+      "js"
+    ],
+    "verbose": true
   }
 }
